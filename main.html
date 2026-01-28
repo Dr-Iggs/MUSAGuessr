@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GeoGuessr-style Map</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <script src="map.js"></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYqNcSpYbAG-MjMhduCq_FjoFR5C_bR4Y&libraries=geometry"
+  async
+  defer
+></script>
+  <div id="game">
+    <div id="pano"></div>
+    <div id="map-container">
+      <div id="map-wrapper">
+        <div id="map"></div>
+      </div>
+      <button id="submitGuess">Submit Guess <div id="selectedLocationDisplay"></div></button>
+    </div>
+</div>
+</body>
+</html>
