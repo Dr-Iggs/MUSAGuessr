@@ -51,7 +51,7 @@ html, body {
 }
 
 /* Submit button */
-#submit {
+#submitGuess {
   height: 48px;
   width: 100%;
   border: none;
