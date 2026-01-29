@@ -117,7 +117,7 @@ function selectLocation(location) {
 document.getElementById("submitGuess").addEventListener("click", checkLocationMatch);
 
 document.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
+  if (event.code === "Enter") {
     //event.preventDefault(); // prevents form submit / reload
     checkLocationMatch();
   }
