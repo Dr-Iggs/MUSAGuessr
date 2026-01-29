@@ -102,6 +102,7 @@ function addMarkers(map) {
 
     marker.addListener("click", () => {
       selectLocation(location);
+      checkLocationMatch();
     });
   });
 }
