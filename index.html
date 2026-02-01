@@ -13,13 +13,21 @@
 ></script>
   <div id="game">
     <div id="ui-layer">
-      <div id ="buttonLocation">
         <button id="submitGuess">Submit Guess <span id="selectedLocationDisplay"></span></button>
-      </div>
     </div>
-    <div id="pano"></div>
+    <div id="pano" class="hidden"></div>
     <div id="map-container">
       <div id="map"></div>
+    </div>
+
+    <div id="popup-overlay">
+      <div id="popup">
+        <span id="RightWrong">Welcome to MurphyGuessr!</span>
+        <span id="HowClose">Use Google Maps Street View to guess which store is showing! <br>
+          Look for state flags, regional stores, or other signs in the environment.<br>
+          (If the map doesn't load, press F5 to reload the page.)</span>
+        <button id="closeResults"><span id="ButtonDisplay">Click to Start</span></button>
+      </div>
     </div>
 </div>
 </body>

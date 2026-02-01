@@ -48,6 +48,8 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 40, lng: -90 },
     zoom: 4,
+    disableDefaultUI: true,
+    zoomControl: true,
     streetViewControl: false
   });
   map.setClickableIcons(false);
@@ -60,7 +62,7 @@ function initMap() {
         pitch: 0
       },
       zoom: 1,
-      addressControl: false,      // ← THIS hides city/state text
+      addressControl: false,     
       showRoadLabels: false,
     }
   );
@@ -102,7 +104,7 @@ function addMarkers(map) {
 
     marker.addListener("click", () => {
       selectLocation(location);
-      checkLocationMatch();
+      //checkLocationMatch();
     });
   });
 }
@@ -115,16 +117,29 @@ function selectLocation(location) {
     `${selectedLocation.StoreNumber}: ${location.City}, ${location.State}`;
 }
 
-document.getElementById("submitGuess").addEventListener("click", checkLocationMatch);
+window.addEventListener("DOMContentLoaded", (event) => {
+  document.getElementById("submitGuess").addEventListener("click", checkLocationMatch);
+  
+  document.getElementById("closeResults").addEventListener("click", () => {
+    document.getElementById("popup-overlay").classList.add("hidden");
+    document.getElementById("popup").classList.add("hidden");
 
-document.addEventListener("keydown", function (event) {
+    document.getElementById("pano").classList.remove("hidden");
+    
+  });
+
+  document.addEventListener("keydown", function (event) {
   if (event.key === "Enter" || event.key === "NumpadEnter") {
     checkLocationMatch();
   }
+  });
 });
 
+
 function checkLocationMatch() {
-  console.log('checking');
+  document.getElementById("popup-overlay").classList.remove("hidden");
+  document.getElementById("popup").classList.remove("hidden");
+  
   const correctLatLng = new google.maps.LatLng(
     correctLocation.Latitude,
     correctLocation.Longitude
@@ -144,29 +159,28 @@ function checkLocationMatch() {
   const distanceMiles = distanceMeters * 0.000621371;
 
   if (correctLocation.StoreNumber === selectedLocation.StoreNumber) {
-    console.log("Correct!");
-  } else {
+    document.getElementById("RightWrong").textContent = `Correct!`;
+    document.getElementById("HowClose").textContent =
+    `It was Store # ${correctLocation.StoreNumber} in ${correctLocation.City}, ${correctLocation.State}.`;
+
+  } 
+  else if (correctLocation.State === selectedLocation.State) {
+    document.getElementById("RightWrong").textContent = `Almost!`;
+    document.getElementById("HowClose").innerHTML =
+  `The correct store was in ${correctLocation.State}, but it was Store #${selectedLocation.StoreNumber} in ${selectedLocation.City}.<br>
+   You were ${Math.round(distanceMiles)} miles away.`;
+
     console.log(
-      `Incorrect, off by ${distanceMiles.toFixed(1)} miles.`
+      `Incorrect, off by ${distanceMiles.toFixed(1)} miles. You were ${Math.round(distanceMiles)} miles away.`
     );
+  }
+  else {
+    document.getElementById("RightWrong").textContent = `Not Quite!`;
+    document.getElementById("HowClose").innerHTML =
+    `The correct store was Store #${correctLocation.StoreNumber} in ${correctLocation.City}, ${correctLocation.State}.
+    <br> You were ${Math.round(distanceMiles)} miles away.`;
+
   };
+  document.getElementById("ButtonDisplay").textContent = "Refresh the page and play again!"
 }
 
-// function selectLocation(location) {
-//   streetViewService.getPanorama(
-//     { location: { lat: location.lat, lng: location.lng }, radius: 50 },
-//     (data, status) => {
-//       if (status === "OK") {
-//         panorama.setPano(data.location.pano);
-//         panorama.setPov({
-//           heading: Math.random() * 360,
-//           pitch: 0
-//         });
-//       } else {
-//         alert("No Street View available here.");
-//       }
-//     }
-//   );
-
-//   selectedLocationId = location.id;
-// }
