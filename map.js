@@ -5,7 +5,7 @@ fetch("Stores.csv")
   .then(response => response.text())
   .then(csvText => {
     locations = parseCSV(csvText);
-    locations = locations.filter((place) => place.State === "NC")
+    locations = locations.filter((place) => place.State === "SC")
     initMap(); //&callback=initMap
   })
   .catch(err => {
