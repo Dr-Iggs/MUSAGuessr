@@ -9,7 +9,7 @@ fetch("Stores.csv")
   .then(csvText => {
     locations = parseCSV(csvText);
     //locations = locations.filter((place) => goodStores.includes(Number(place.StoreNumber)));
-    locations = locations.filter((place) => place.State === "CO");
+    locations = locations.filter((place) => place.State === "NE" || place.State === "KS" || place.State === "MI");
     initMap();
   })
   .catch(err => {
