@@ -8,8 +8,9 @@ fetch("Stores.csv")
   .then(response => response.text())
   .then(csvText => {
     locations = parseCSV(csvText);
-    locations = locations.filter((place) => goodStores.includes(Number(place.StoreNumber)));
-    initMap(); //&callback=initMap
+    //locations = locations.filter((place) => goodStores.includes(Number(place.StoreNumber)));
+    locations = locations.filter((place) => place.State === "CO");
+    initMap();
   })
   .catch(err => {
     console.error("Failed to load locations.csv", err);
