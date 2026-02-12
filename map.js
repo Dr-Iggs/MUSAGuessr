@@ -1,11 +1,14 @@
 
 let locations = [];
+const goodStores = [1200,1111,7520,7537,8500,7675,6848,5659,7964,8692,7656,8870,6513,8776,5820,7532,6519, 2189,
+                    7292, 6986, 6899, 8553, 7510, 7855, 8507, 8524, 7460, 8663, 7752, 8532, 7940, 7282,6581,
+                    7209,7743,7263,6865,6588,8787,8910,7600,7689,6560, 7244,7782,7853,7567,8764,6750,8605,8951,7204,6825,8780]
 
 fetch("Stores.csv")
   .then(response => response.text())
   .then(csvText => {
     locations = parseCSV(csvText);
-    locations = locations.filter((place) => place.State === "UT")
+    locations = locations.filter((place) => goodStores.include(place.StoreNumber));
     initMap(); //&callback=initMap
   })
   .catch(err => {
