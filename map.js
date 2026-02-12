@@ -8,7 +8,7 @@ fetch("Stores.csv")
   .then(response => response.text())
   .then(csvText => {
     locations = parseCSV(csvText);
-    locations = locations.filter((place) => goodStores.include(place.StoreNumber));
+    locations = locations.filter((place) => goodStores.includes(Number(place.StoreNumber)));
     initMap(); //&callback=initMap
   })
   .catch(err => {
