@@ -5,10 +5,12 @@ fetch("Stores.csv")
   .then(response => response.text())
   .then(csvText => {
     locations = parseCSV(csvText);
+    locations = locations.filter((place) => place.State === "NC")
     initMap(); //&callback=initMap
   })
   .catch(err => {
     console.error("Failed to load locations.csv", err);
+    window.location.reload();
   });
 
 function parseCSV(csvText) {
@@ -165,9 +167,9 @@ function checkLocationMatch() {
 
   } 
   else if (correctLocation.State === selectedLocation.State) {
-    document.getElementById("RightWrong").textContent = `Almost!`;
+    document.getElementById("RightWrong").textContent = `Nice one!`;
     document.getElementById("HowClose").innerHTML =
-  `The correct store was in ${correctLocation.State}, but it was Store #${selectedLocation.StoreNumber} in ${selectedLocation.City}.<br>
+  `You were right to pick "${correctLocation.State}", but it was Store #${correctLocation.StoreNumber} in ${correctLocation.City}.<br>
    You were ${Math.round(distanceMiles)} miles away.`;
 
     console.log(
