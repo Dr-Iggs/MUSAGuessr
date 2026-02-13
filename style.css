@@ -29,14 +29,22 @@ html, body {
   bottom: 20px;
   right: 20px;
 
-  width: 250px;
-  height: 250px; /* square */
+  width: 500px;
+  height: 500px; /* square */
 
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.25);
   overflow: hidden;
   z-index: 20;
+
+  transform: scale(0.5);               /* visually 250x250 */
+  transform-origin: bottom right;      /* anchor corner */
+  transition: transform 0.25s ease;
+}
+
+#map-container:hover {
+  transform: scale(1); /* full 500x500 */
 }
 
 #map {
@@ -62,7 +70,7 @@ html, body {
 
 
 /* Popup box */
-#popup {
+.popup {
   background: #fff;
   padding: 28px 36px;
   border-radius: 14px;
@@ -74,21 +82,25 @@ html, body {
 }
 
 /* Text styling */
-#RightWrong {
+.popup-title {
   display: block;
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 12px;
 }
 
-#HowClose {
+.popup-text {
   display: block;
   font-size: 18px;
   margin-bottom: 24px;
 }
 
+.popup-small-text {
+  font-size: 14px;
+}
+
 /* Button */
-#closeResults {
+.popup-button {
   padding: 10px 20px;
   font-size: 16px;
   border: none;
@@ -99,8 +111,27 @@ html, body {
   color: white;
 }
 
+.popup-tips {
+  z-index: 1;
+}
+#tips-text {
+  text-align:left;
+}
+
 #closeResults:hover {
   background: #0056b3;
+}
+
+#map-result {
+  width:250px;
+  height:250px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#selectedLocationDisplay {
+  font-weight: bold;
 }
 
 /* Hidden helper */

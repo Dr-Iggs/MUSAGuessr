@@ -12,21 +12,53 @@
   defer
 ></script>
   <div id="game">
-    <div id="ui-layer">
-        <button id="submitGuess">Submit Guess <span id="selectedLocationDisplay"></span></button>
+    <div id="ui-layer" class="hidden">
+        <button id="submitGuess" class="popup-button">Submit Guess <span id="selectedLocationDisplay"></span></button>
+        <button id="show-tips" class="popup-button">Tips for Playing</button>
+        <button id="close-tips" class="popup-button hidden">Click to Close Tips</button>
+        <button id="show-hints" class="popup-button"><span id="hint">Click Here for a Hint</span></button>
     </div>
     <div id="pano" class="hidden"></div>
-    <div id="map-container">
+    <div id="map-container" class="hidden">
       <div id="map"></div>
     </div>
 
     <div id="popup-overlay">
-      <div id="popup">
-        <span id="RightWrong">Welcome to MurphyGuessr!</span>
-        <span id="HowClose">Use Google Maps Street View to guess which store is showing! <br>
-          Look for state flags, regional stores, or other signs in the environment.<br>
-          (If the map doesn't load, press F5 to reload the page.)</span>
-        <button id="closeResults"><span id="ButtonDisplay">Click to Start</span></button>
+      <div id="popup-start" class="popup">
+        <span class = "popup-title">Welcome to MurphyGuessr!</span>
+        <span class = "popup-text">Use Google Maps Street View to guess which store is showing! <br>
+          Click a store location on the right side map, then submit at the top.<br>
+          Use road signs, regional stores, or state flags in the environment as clues!<br>
+          <br>
+          Choose from one of three settings:<br>
+          <span class="popup-small-text">
+            "All Stores" has all 1600+ MUSA & QC sites (difficult).<br>
+            "60 Stores" has a couple stores from each state (easy).<br>
+            "2025 Build Class" has the properties in various stages of development (medium).
+          </span>
+        </span>
+        <button id="choose-all" class="popup-button close-title">All Stores (hard)</button>
+        <button id="choose-curated" class="popup-button close-title">60 Stores (easy)</button>
+        <button id="choose-2025" class="popup-button close-title">2025 Build Class (medium)</button>
+      </div>
+
+      <div id="popup-tips" class="hidden popup">
+        <span class="popup-title">Tips for Playing</span>
+        <span id="tips-text" class="popup-text">
+          It's ok to move around and get closer to other sites!<br>
+          Lots of our stores are near highways, so look for highway signs and match them to the map. <br>
+          Regional Chains: Casey's = Midwest, Speedway = Southeast<br>
+          States Requiring Front & Back License Plates: CO, IL, IA, MS, NE, NJ, NY, NV, TX, UT<br>
+          New Jersey stores will have a booth by the pumps for fuel workers.<br>
+        </span>
+        
+      </div>
+
+      <div id="popup-result" class="hidden popup">
+        <span id="RightWrong" class="popup-title"></span>
+        <span id="HowClose">Uh oh, there was an error while checking the store results</span>
+        <div id="map-result"></div>
+        <button id="close-results" class="popup-button">Click here to go again!</button>
       </div>
     </div>
 </div>
