@@ -2,7 +2,8 @@
 let locations = [];
 const goodStores = [1200,1111,7520,7537,8500,7675,6848,5659,7964,8692,7656,8870,6513,8776,5820,7532,6519, 2189,
                     7292, 6986, 6899, 8553, 7510, 7855, 8507, 8524, 7460, 8663, 7752, 8532, 7940, 7282,6581,
-                    7209,7743,7263,6865,6588,8787,8910,7600,7689,6560, 7024,7782,7853,7567,8764,6750,8605,8951,7204,6825,8780]
+                    7209,7743,7263,6865,6588,8787,8910,7600,7689,6560, 7024,7782,7853,7567,8764,6750,8605,8951,7204,6825,8780,
+                   7364,7964,8799,2134,2164,7521,8781]
 
 const newStores = [2204,5525,5527,5690,5698,5722,6504,6510,6514,6536,
                     6543,6545,6571,6576,6596,6629,6658,6659,6682,6702,
@@ -158,8 +159,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
   });
 
   document.getElementById("choose-2025").addEventListener("click", () => {
-    //locations = locations.filter((place) => newStores.includes(Number(place.StoreNumber)));
-    locations = locations.filter((place) => place.State === "NE" || place.State === "NY" || place.State === "VA");
+    locations = locations.filter((place) => newStores.includes(Number(place.StoreNumber)));
+    //locations = locations.filter((place) => place.State === "NE" || place.State === "NY" || place.State === "VA");
     initMap();
   });
 
