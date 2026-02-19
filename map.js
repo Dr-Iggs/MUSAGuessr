@@ -158,8 +158,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
   });
 
   document.getElementById("choose-2025").addEventListener("click", () => {
-    locations = locations.filter((place) => newStores.includes(Number(place.StoreNumber)));
-    //locations = locations.filter((place) => place.State === "NE" || place.State === "KS" || place.State === "MI");
+    //locations = locations.filter((place) => newStores.includes(Number(place.StoreNumber)));
+    locations = locations.filter((place) => place.State === "NE" || place.State === "KS" || place.State === "MI");
     initMap();
   });
 
