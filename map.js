@@ -53,13 +53,13 @@ let panorama;
 let selectedLocation = null;
 let correctLocation = null;
 
-function initMap() {
+function initMap(lat=40,lng=-95,zoom=4) {
   const streetViewService = new google.maps.StreetViewService();
 
   correctLocation = locations[Math.floor(Math.random() * locations.length)];
   map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 40, lng: -95 },
-    zoom: 4,
+    center: { lat: lat, lng: lng },
+    zoom: zoom,
     disableDefaultUI: true,
     zoomControl: true,
     streetViewControl: false
@@ -164,6 +164,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
     initMap();
   });
 
+  document.getElementById("choose-qc").addEventListener("click", () => {
+    locations = locations.filter((place) => Number(place.StoreNumber) < 3000 && Number(place.StoreNumber) > 2000);
+    //locations = locations.filter((place) => place.State === "NE" || place.State === "NY" || place.State === "VA");
+    initMap(lat=40,lng=-74,zoom=7);
+  });
+  
   document.getElementById("show-hints").addEventListener("click", () => {
     document.getElementById("hint").textContent = `This store is in ${correctLocation.State}`
   });
