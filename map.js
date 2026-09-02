@@ -167,7 +167,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   document.getElementById("choose-qc").addEventListener("click", () => {
     locations = locations.filter((place) => Number(place.StoreNumber) < 3000 && Number(place.StoreNumber) > 2000);
     console.log(locations.slice(0, 10).map(x => x.StoreNumber));
-    initMap(startlat=40,startlng=-74,startzoom=7);
+    initMap(startlat=42,startlng=-74,startzoom=8);
   });
   
   document.getElementById("show-hints").addEventListener("click", () => {
