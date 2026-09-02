@@ -13,6 +13,9 @@ const newStores = [2204,5525,5527,5690,5698,5722,6504,6510,6514,6536,
                     7922,7930,7931,7960,7961,7963,7965,7969,7983,7984,
                     7985,7986,7988,7993,7994,8590,8615,8744,8768,8810,
                     8818,8950,8972,8974,8975,8977,8979,1200]
+
+const badqc = [2111,2041,2009,2078,2149,2007,2030,2031,2091,2084]
+
 fetch("Stores.csv")
   .then(response => response.text())
   .then(csvText => {
@@ -166,6 +169,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   document.getElementById("choose-qc").addEventListener("click", () => {
     locations = locations.filter((place) => Number(place.StoreNumber) < 3000 && Number(place.StoreNumber) > 2000);
+    locations = locations.filter((place) => !badqc.includes(Number(place.StoreNumber)));
     console.log(locations.slice(0, 10).map(x => x.StoreNumber));
     initMap(startlat=42,startlng=-74,startzoom=8);
   });
