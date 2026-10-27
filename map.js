@@ -56,7 +56,7 @@ let panorama;
 let selectedLocation = null;
 let correctLocation = null;
 
-function initMap(startlat=40,startlng=-95,startzoom=4) {
+function initMap(startlat=39.5,startlng=-95,startzoom=4) {
   const streetViewService = new google.maps.StreetViewService();
 
   correctLocation = locations[Math.floor(Math.random() * locations.length)];
